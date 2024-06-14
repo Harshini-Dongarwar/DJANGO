@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1> HELLO {{name}}!!!</h1>
+<form action="add" method="post">
+    {% csrf_token %}
+    name: <input type="text" name="name"><br>
+    rollno: <input type="text" name="rollno"><br>
+    phone:<input type="text"name="phone"><br>
+    
+    <input type="submit">
+
+
+
+</form>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">rollno</th>
+        <th scope="col">phone</th>
+        
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+     
+      {% for d in data %}
+      <tr>
+        <td>{{ d.id }}</td>
+        <td>{{ d.name }}</td>
+        <td>{{ d.rollno }}</td>
+        <td>{{ d.phone}}</td>
+        
+       
+        <td><a href="/update/{{ d.id }}" class="btn btn-outline-primary">Edit</a></td>
+        
+        <td><a href="/delete/{{ d.id }}" class="btn btn-outline-danger">Delete</a></td>
+      </tr>
+      {% endfor %}
+      
+      
+  
+    </tbody>
+  </table>
+
+{% endblock %}
